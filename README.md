@@ -61,17 +61,17 @@ This repository contains my solutions to the **Java FSE Deep Skilling** exercise
 
 | Exercise | Topic | Status |
 |----------|-------|--------|
-| Exercise 1 | Implementing the Singleton Pattern | ⏳ Pending |
-| Exercise 2 | Implementing the Factory Method Pattern | ⏳ Pending |
-| Exercise 3 | Implementing the Builder Pattern | ⏳ Pending |
-| Exercise 4 | Implementing the Adapter Pattern | ⏳ Pending |
-| Exercise 5 | Implementing the Decorator Pattern | ⏳ Pending |
-| Exercise 6 | Implementing the Proxy Pattern | ⏳ Pending |
-| Exercise 7 | Implementing the Observer Pattern | ⏳ Pending |
-| Exercise 8 | Implementing the Strategy Pattern | ⏳ Pending |
-| Exercise 9 | Implementing the Command Pattern | ⏳ Pending |
-| Exercise 10 | Implementing the MVC Pattern | ⏳ Pending |
-| Exercise 11 | Implementing Dependency Injection | ⏳ Pending |
+| Exercise 1 | Implementing the Singleton Pattern |Done |
+| Exercise 2 | Implementing the Factory Method Pattern | Done |
+| Exercise 3 | Implementing the Builder Pattern | Done |
+| Exercise 4 | Implementing the Adapter Pattern | Done |
+| Exercise 5 | Implementing the Decorator Pattern | Done |
+| Exercise 6 | Implementing the Proxy Pattern | Done |
+| Exercise 7 | Implementing the Observer Pattern | Done |
+| Exercise 8 | Implementing the Strategy Pattern | Done |
+| Exercise 9 | Implementing the Command Pattern | Done |
+| Exercise 10 | Implementing the MVC Pattern | Done |
+| Exercise 11 | Implementing Dependency Injection | Done |
 
 ---
 
@@ -79,13 +79,13 @@ This repository contains my solutions to the **Java FSE Deep Skilling** exercise
 
 | Exercise | Topic | Status |
 |----------|-------|--------|
-| Exercise 1 | Inventory Management System (Arrays) | ⏳ Pending |
-| Exercise 2 | E-commerce Platform Search (LinkedList) | ⏳ Pending |
-| Exercise 3 | Sorting Customer Orders | ⏳ Pending |
-| Exercise 4 | Employee Management System | ⏳ Pending |
-| Exercise 5 | Task Management System | ⏳ Pending |
-| Exercise 6 | Library Management (Search Algorithms) | ⏳ Pending |
-| Exercise 7 | Financial Forecasting | ⏳ Pending |
+| Exercise 1 | Inventory Management System (Arrays) | Done |
+| Exercise 2 | E-commerce Platform Search (LinkedList) | Done |
+| Exercise 3 | Sorting Customer Orders | Done |
+| Exercise 4 | Employee Management System | Done |
+| Exercise 5 | Task Management System | Done |
+| Exercise 6 | Library Management (Search Algorithms) | Done |
+| Exercise 7 | Financial Forecasting | Done |
 
 ---
 
@@ -93,13 +93,13 @@ This repository contains my solutions to the **Java FSE Deep Skilling** exercise
 
 | Exercise | Topic | Status |
 |----------|-------|--------|
-| Exercise 1 | Control Structures | ⏳ Pending |
-| Exercise 2 | Error Handling | ⏳ Pending |
-| Exercise 3 | Stored Procedures | ⏳ Pending |
-| Exercise 4 | Functions | ⏳ Pending |
-| Exercise 5 | Triggers | ⏳ Pending |
-| Exercise 6 | Cursors | ⏳ Pending |
-| Exercise 7 | Packages | ⏳ Pending |
+| Exercise 1 | Control Structures | Done |
+| Exercise 2 | Error Handling |Done |
+| Exercise 3 | Stored Procedures | Done |
+| Exercise 4 | Functions | Done |
+| Exercise 5 | Triggers | Done |
+| Exercise 6 | Cursors | Done |
+| Exercise 7 | Packages | Done |
 
 ---
 
@@ -107,13 +107,13 @@ This repository contains my solutions to the **Java FSE Deep Skilling** exercise
 
 | Exercise | Topic | Status |
 |----------|-------|--------|
-| Exercise 1 | JUnit Basic Testing | ⏳ Pending |
-| Exercise 2 | JUnit Advanced Testing | ⏳ Pending |
-| Exercise 3 | Mockito Basics | ⏳ Pending |
-| Exercise 4 | Mockito Advanced | ⏳ Pending |
-| Exercise 5 | JUnit Spring Test | ⏳ Pending |
-| Exercise 6 | Mockito Mock Dependencies | ⏳ Pending |
-| Exercise 7 | SLF4J Logging | ⏳ Pending |
+| Exercise 1 | JUnit Basic Testing | Done |
+| Exercise 2 | JUnit Advanced Testing | Done |
+| Exercise 3 | Mockito Basics | Done |
+| Exercise 4 | Mockito Advanced | Done |
+| Exercise 5 | JUnit Spring Test | Done |
+| Exercise 6 | Mockito Mock Dependencies | Done |
+| Exercise 7 | SLF4J Logging | Done |
 
 ---
 
@@ -121,9 +121,9 @@ This repository contains my solutions to the **Java FSE Deep Skilling** exercise
 
 | Exercise | Topic | Status |
 |----------|-------|--------|
-| Exercise 1 | Configuring a Basic Spring Application | ⏳ Pending |
-| Exercise 2 | Implementing Dependency Injection | ⏳ Pending |
-| Exercise 3 | Implementing Logging with Spring AOP | ⏳ Pending |
+| Exercise 1 | Configuring a Basic Spring Application | Done |
+| Exercise 2 | Implementing Dependency Injection |Done|
+| Exercise 3 | Implementing Logging with Spring AOP | Done |
 
 ---
 
@@ -131,9 +131,9 @@ This repository contains my solutions to the **Java FSE Deep Skilling** exercise
 
 | Exercise | Topic | Status |
 |----------|-------|--------|
-| Exercise 1 | Setting Up Spring Data JPA | ⏳ Pending |
-| Exercise 2 | Implementing CRUD Operations | ⏳ Pending |
-| Exercise 3 | Query Methods and Custom Queries | ⏳ Pending |
+| Exercise 1 | Setting Up Spring Data JPA | Done|
+| Exercise 2 | Implementing CRUD Operations | Done |
+| Exercise 3 | Query Methods and Custom Queries | Done |
 
 ---
 
