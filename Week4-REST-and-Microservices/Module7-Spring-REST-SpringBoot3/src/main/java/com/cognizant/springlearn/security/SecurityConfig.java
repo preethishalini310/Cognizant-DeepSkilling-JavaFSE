@@ -1,0 +1,61 @@
+package com.cognizant.springlearn.security;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+/**
+ * Hands on 5 - Securing RESTful Web Services with Spring Security + JWT
+ *
+ * Evolution captured here (see comments):
+ *  1. @EnableWebSecurity alone -> secures everything with an auto-generated password
+ *  2. In-memory users "admin" / "user" (password "pwd") with roles ADMIN / USER
+ *  3. /countries restricted to role USER via antMatchers
+ *  4. Finally: HTTP Basic retained for /authenticate, all other requests must be
+ *     authenticated, and JwtAuthorizationFilter validates the Bearer token.
+ */
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SecurityConfig.class);
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("admin").password(passwordEncoder().encode("pwd")).roles("ADMIN")
+                .and()
+                .withUser("user").password(passwordEncoder().encode("pwd")).roles("USER");
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        LOGGER.info("Start");
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.csrf().disable().httpBasic().and()
+                .authorizeRequests()
+                // .antMatchers("/countries").hasRole("USER") // superseded by JWT filter below
+                .antMatchers("/authenticate").hasAnyRole("USER", "ADMIN")
+                .anyRequest().authenticated()
+                .and()
+                .addFilter(new JwtAuthorizationFilter(authenticationManagerBean()));
+    }
+}
