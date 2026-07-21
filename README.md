@@ -1,209 +1,106 @@
-# 🚀 Cognizant Digital Nurture 5.0 – Java FSE Deep Skilling Solutions
+# Microservices Composite Hands-On — Account & Loan with Eureka + API Gateway
 
-![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)
-![GitHub last commit](https://img.shields.io/github/last-commit/preethishalini310/Cognizant-DeepSkilling-JavaFSE)
+Solution for the "Creating Microservices for account and loan" hands-on exercise
+(Spring Boot 3 + Spring Cloud 2023.0.1, Java 17).
 
----
+## Modules
 
-## 👤 ABOUT ME
+| Module | Port | Role |
+|---|---|---|
+| `eureka-server` | 8761 | Service registry (Eureka Discovery Server) |
+| `account-service` | 8080 | `GET /accounts/{number}` — dummy account lookup |
+| `loan-service` | 8081 | `GET /loans/{number}` — dummy loan lookup |
+| `api-gateway` | 9090 | Spring Cloud Gateway routing to both services via discovery, with a global logging filter |
 
-| Field | Details |
-|-------|---------|
-| **NAME** | PREETHI SHALINI C |
-| **GitHub** | [@preethishalini310](https://github.com/preethishalini310) |
-| **Program** | Cognizant Digital Nurture 5.0 – Java Full Stack Engineer (Deep Skilling) |
-| **Year** | 2026 |
+Each module is an independent, self-contained Maven project (its own `pom.xml`), matching
+the exercise's structure of separate microservices rather than a multi-module build.
 
----
+## Prerequisites
 
-## 📖 ABOUT THE REPOSITORY
+- JDK 17+
+- Maven 3.9+
+- Ports 8080, 8081, 8761, 9090 free on localhost
 
-This repository contains my solutions to the **Java FSE Deep Skilling** exercises provided as part of the **Cognizant Digital Nurture 5.0** program.
+## Build
 
-🔗 Original exercises: [Digital-Nurture-JavaFSE](https://github.com/cognizant/Digital-Nurture-JavaFSE)
+From the repo root, build each module:
 
----
-
-## 🗂️ Repository Structure
-
-```
-📦 Cognizant-DeepSkilling-JavaFSE/
-├── Week1-Engineering-Concepts/
-│   ├── Module1-Design-Patterns-and-Principles/
-│   └── Module2-Data-Structures-and-Algorithms/
-├── Week2-Programming-Languages/
-│   ├── Module3-PL-SQL-Programming/
-│   └── Module4-JUnit-Mockito-SLF4J/
-├── Week3-Spring-Framework/
-│   ├── Module5-Spring-Core-and-Maven/
-│   └── Module6-Spring-Data-JPA-Hibernate/
-├── Week4-REST-and-Microservices/
-│   ├── Module7-Spring-REST-SpringBoot3/
-│   └── Module8-Microservices-SpringCloud/
-├── Week5-React/
-│   ├── Module9-React-SPA/
-│   └── Module10-Application-Debugging/
-├── Week6-Platforms-DevOps/
-│   ├── Module11-GIT/
-│   ├── Module12-DevOps-CICD/
-│   └── Module13-Docker/
-└── Week7-Cloud-GenAI/
-    ├── Module14-Agile/
-    ├── Module15-Cloud-Fundamentals/
-    └── Module16-GenAI-GitHub-Copilot/
+```bash
+cd eureka-server && mvn clean package -DskipTests && cd ..
+cd account-service && mvn clean package -DskipTests && cd ..
+cd loan-service && mvn clean package -DskipTests && cd ..
+cd api-gateway && mvn clean package -DskipTests && cd ..
 ```
 
----
+## Run (start in this order)
 
-## 📊 Exercise Tracker
+```bash
+# Terminal 1
+cd eureka-server && mvn spring-boot:run
 
-### 🧩 Module 1 – Design Patterns and Principles
+# Terminal 2 (wait for eureka-server to finish starting)
+cd account-service && mvn spring-boot:run
 
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Implementing the Singleton Pattern | ⏳ Pending |
-| Exercise 2 | Implementing the Factory Method Pattern | ⏳ Pending |
-| Exercise 3 | Implementing the Builder Pattern | ⏳ Pending |
-| Exercise 4 | Implementing the Adapter Pattern | ⏳ Pending |
-| Exercise 5 | Implementing the Decorator Pattern | ⏳ Pending |
-| Exercise 6 | Implementing the Proxy Pattern | ⏳ Pending |
-| Exercise 7 | Implementing the Observer Pattern | ⏳ Pending |
-| Exercise 8 | Implementing the Strategy Pattern | ⏳ Pending |
-| Exercise 9 | Implementing the Command Pattern | ⏳ Pending |
-| Exercise 10 | Implementing the MVC Pattern | ⏳ Pending |
-| Exercise 11 | Implementing Dependency Injection | ⏳ Pending |
+# Terminal 3
+cd loan-service && mvn spring-boot:run
 
----
+# Terminal 4
+cd api-gateway && mvn spring-boot:run
+```
 
-### 📊 Module 2 – Data Structures and Algorithms
+## Verify
 
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Inventory Management System (Arrays) | ⏳ Pending |
-| Exercise 2 | E-commerce Platform Search (LinkedList) | ⏳ Pending |
-| Exercise 3 | Sorting Customer Orders | ⏳ Pending |
-| Exercise 4 | Employee Management System | ⏳ Pending |
-| Exercise 5 | Task Management System | ⏳ Pending |
-| Exercise 6 | Library Management (Search Algorithms) | ⏳ Pending |
-| Exercise 7 | Financial Forecasting | ⏳ Pending |
+1. **Eureka registry** — http://localhost:8761
+   You should see `ACCOUNT-SERVICE`, `LOAN-SERVICE`, and `API-GATEWAY` listed under
+   "Instances currently registered with Eureka".
 
----
+2. **Direct service calls**
+   ```bash
+   curl http://localhost:8080/accounts/00987987973432
+   # { "number": "00987987973432", "type": "savings", "balance": 234343.0 }
 
-### 🗄️ Module 3 – PL/SQL Programming
+   curl http://localhost:8081/loans/H00987987972342
+   # { "number": "H00987987972342", "type": "car", "loan": 400000.0, "emi": 3258.0, "tenure": 18 }
+   ```
 
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Control Structures | ⏳ Pending |
-| Exercise 2 | Error Handling | ⏳ Pending |
-| Exercise 3 | Stored Procedures | ⏳ Pending |
-| Exercise 4 | Functions | ⏳ Pending |
-| Exercise 5 | Triggers | ⏳ Pending |
-| Exercise 6 | Cursors | ⏳ Pending |
-| Exercise 7 | Packages | ⏳ Pending |
+3. **Through the API Gateway** (routes are auto-created from the Eureka service IDs,
+   lower-cased, thanks to `spring.cloud.gateway.discovery.locator`):
+   ```bash
+   curl http://localhost:9090/account-service/accounts/00987987973432
+   curl http://localhost:9090/loan-service/loans/H00987987972342
+   ```
 
----
+4. **Gateway logging filter** — the `api-gateway` console should print a line like
+   `====>Request URL http://localhost:9090/account-service/accounts/00987987973432`
+   for every request that passes through, via `LogFilter` (`GlobalFilter`).
 
-### 🧪 Module 4 – JUnit, Mockito and SLF4J
+## Project layout
 
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | JUnit Basic Testing | ⏳ Pending |
-| Exercise 2 | JUnit Advanced Testing | ⏳ Pending |
-| Exercise 3 | Mockito Basics | ⏳ Pending |
-| Exercise 4 | Mockito Advanced | ⏳ Pending |
-| Exercise 5 | JUnit Spring Test | ⏳ Pending |
-| Exercise 6 | Mockito Mock Dependencies | ⏳ Pending |
-| Exercise 7 | SLF4J Logging | ⏳ Pending |
+```
+microservices-composite/
+├── eureka-server/
+│   └── src/main/java/com/cognizant/eurekaserver/EurekaServerApplication.java
+├── account-service/
+│   └── src/main/java/com/cognizant/account/
+│       ├── AccountServiceApplication.java
+│       ├── controller/AccountController.java
+│       └── model/Account.java
+├── loan-service/
+│   └── src/main/java/com/cognizant/loan/
+│       ├── LoanServiceApplication.java
+│       ├── controller/LoanController.java
+│       └── model/Loan.java
+└── api-gateway/
+    └── src/main/java/com/cognizant/gateway/
+        ├── ApiGatewayApplication.java
+        └── filters/LogFilter.java
+```
 
----
+## Notes
 
-### 🌱 Module 5 – Spring Core and Maven
-
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Configuring a Basic Spring Application | ⏳ Pending |
-| Exercise 2 | Implementing Dependency Injection | ⏳ Pending |
-| Exercise 3 | Implementing Logging with Spring AOP | ⏳ Pending |
-
----
-
-### 🗃️ Module 6 – Spring Data JPA with Hibernate
-
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Setting Up Spring Data JPA | ⏳ Pending |
-| Exercise 2 | Implementing CRUD Operations | ⏳ Pending |
-| Exercise 3 | Query Methods and Custom Queries | ⏳ Pending |
-
----
-
-### 🌐 Module 7 – Spring REST using Spring Boot 3
-
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Building RESTful API – Basic | ⏳ Pending |
-| Exercise 2 | Request/Response Handling | ⏳ Pending |
-| Exercise 3 | RESTful CRUD Operations | ⏳ Pending |
-| Exercise 4 | Spring Boot Actuator and Security | ⏳ Pending |
-| Exercise 5 | JWT Authentication | ⏳ Pending |
-
----
-
-### ⚙️ Module 8 – Microservices with Spring Boot 3 and Spring Cloud
-
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Microservices using Spring Boot 3 | ⏳ Pending |
-| Exercise 2 | Microservices with API Gateway | ⏳ Pending |
-| Exercise 3 | Microservices Load Balancing | ⏳ Pending |
-| Exercise 4 | Microservices Composite Hands-on | ⏳ Pending |
-
----
-
-### ⚛️ Module 9 – React (Single Page Application)
-
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Introduction to React | ⏳ Pending |
-| Exercise 2 | React Components and Props | ⏳ Pending |
-| Exercise 3 | React ES6 and JSX | ⏳ Pending |
-| Exercise 4 | React Events | ⏳ Pending |
-| Exercise 5 | Conditional Rendering | ⏳ Pending |
-| Exercise 6 | React Lists and Keys | ⏳ Pending |
-| Exercise 7 | React Forms | ⏳ Pending |
-| Exercise 8 | Calling API with React | ⏳ Pending |
-| Exercise 9–19 | Advanced React Hands-on | ⏳ Pending |
-
----
-
-### 🐙 Module 11 – Version Control (GIT)
-
-| Exercise | Topic | Status |
-|----------|-------|--------|
-| Exercise 1 | Git Basics – Init, Clone, Commit | ⏳ Pending |
-| Exercise 2 | Branching and Merging | ⏳ Pending |
-| Exercise 3 | Remote Repositories | ⏳ Pending |
-| Exercise 4 | Forking and Pull Requests | ⏳ Pending |
-| Exercise 5 | Git Workflows | ⏳ Pending |
-
----
-
-## 🛠️ Technologies Used
-
-- ☕ **Java**
-- 🌱 **Spring Boot 3, Spring Cloud, Spring Data JPA**
-- ⚛️ **React JS**
-- 🗄️ **MySQL / Oracle PL/SQL**
-- 🧪 **JUnit 5, Mockito, SLF4J**
-- 🐳 **Docker**
-- ☁️ **AWS (EC2, S3, RDS, Lambda)**
-- 🤖 **GitHub Copilot / GenAI**
-- 🐙 **Git & GitHub**
-- 🔧 **Maven**
-
----
-
-## 📬 Contact
-
-[@preethishalini310](https://github.com/preethishalini310)
-
+- Both `account-service` and `loan-service` return static/dummy data — there's no
+  database wired up, matching the exercise's "simple service without any backend
+  connectivity" requirement.
+- `api-gateway` doesn't hand-write routes in `application.properties`; it relies on
+  `spring.cloud.gateway.discovery.locator.enabled=true` to build routes automatically
+  from whatever is registered in Eureka.
